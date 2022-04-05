@@ -5,9 +5,15 @@ export interface TweetType extends mongoose.Document {
 }
 
 const tweetSchema = new mongoose.Schema({
-  textInput: { type: String, required: true, unique: true },
+  textInput: { type: String, required: true },
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "tweets",
+    },
+  ],
 });
 
-const User = mongoose.model<TweetType>("tweets", tweetSchema);
+const Tweet = mongoose.model<TweetType>("tweets", tweetSchema);
 
-export default User;
+export default Tweet;

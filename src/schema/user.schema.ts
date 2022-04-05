@@ -35,6 +35,7 @@ const params = {
     }),
   }),
 };
+
 export const getUserSchema = object({
   ...params,
 });
