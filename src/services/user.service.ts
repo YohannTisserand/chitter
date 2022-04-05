@@ -1,4 +1,9 @@
-import { DocumentDefinition, FilterQuery, QueryOptions } from "mongoose";
+import {
+  DocumentDefinition,
+  FilterQuery,
+  QueryOptions,
+  UpdateQuery,
+} from "mongoose";
 import { omit } from "lodash";
 import User, { UserType } from "../models/user.model";
 
@@ -27,4 +32,12 @@ export async function findUserById(
 
 export async function deleteUser(query: FilterQuery<UserType>) {
   return User.deleteOne(query);
+}
+
+export async function findAndUpdateUser(
+  query: FilterQuery<UserType>,
+  update: UpdateQuery<UserType>,
+  options: QueryOptions
+) {
+  return User.findOneAndUpdate(query, update, options);
 }
