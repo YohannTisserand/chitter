@@ -21,4 +21,5 @@ router.get("/", findAllUserHandler);
 router.get("/:userId", validate(getUserSchema), findUserByIdHandler);
 router.put("/:userId", validate(updateUserSchema), updateUserHandler);
 router.delete("/:userId", validate(deleteUserSchema), deleteUserHandler);
+
 export default router;
