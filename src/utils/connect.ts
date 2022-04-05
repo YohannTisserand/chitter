@@ -4,10 +4,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function connect() {
-  const dbUri = process.env.MONGODB_URI!;
+  const mongoDbUri = process.env.MONGODB_URI!;
 
   try {
-    await mongoose.connect(dbUri);
+    await mongoose.connect(mongoDbUri);
     logger.info("DB connected");
   } catch (error) {
     logger.error("Could not connect to db");

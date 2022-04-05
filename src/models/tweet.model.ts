@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
-
+import { UserType } from "./user.model";
 export interface TweetType extends mongoose.Document {
+  user: UserType["_id"];
   textInput: string;
 }
 
