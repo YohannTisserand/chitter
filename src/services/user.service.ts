@@ -1,27 +1,18 @@
-import { DocumentDefinition, FilterQuery, QueryOptions } from "mongoose";
+import { DocumentDefinition } from "mongoose";
+import { omit } from "lodash";
 import User, { UserType } from "../models/user.model";
 
-export const createUser = async (input: DocumentDefinition<UserType>) => {
+export async function createUser(input: DocumentDefinition<UserType>) {
   try {
-    return await User.create(input);
-  } catch (error: any) {
-    throw new Error(error);
+    const user = await User.create(input);
+
+    return omit(user.toJSON(), "password");
+  } catch (e: any) {
+    throw new Error(e);
   }
-};
+}
 
-export const findUserById = async (
-  query: FilterQuery<UserType>,
-  options: QueryOptions = { lean: true }
-) => {
-  const result = await User.findOne(query, {}, options);
-  return result;
-};
-
-export const findAllUsers = async () => {
-  const result = await User.find({});
-  return result;
-};
-
-export const deleteUser = async (query: FilterQuery<UserType>) => {
-  return await User.deleteOne(query);
-};
+export async function findAllUsers() {
+  const user = await User.find();
+  return user;
+}
