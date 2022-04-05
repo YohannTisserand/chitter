@@ -1,4 +1,4 @@
-import { DocumentDefinition } from "mongoose";
+import { DocumentDefinition, FilterQuery } from "mongoose";
 import { omit } from "lodash";
 import User, { UserType } from "../models/user.model";
 
@@ -14,5 +14,10 @@ export async function createUser(input: DocumentDefinition<UserType>) {
 
 export async function findAllUsers() {
   const user = await User.find();
+  return user;
+}
+
+export async function findUserById(query: FilterQuery<UserType>) {
+  const user = await User.findById(query);
   return user;
 }

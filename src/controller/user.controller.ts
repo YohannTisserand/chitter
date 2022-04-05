@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { CreateUserInput } from "../schema/user.schema";
-import { createUser, findAllUsers } from "../services/user.service";
+import {
+  createUser,
+  findAllUsers,
+  findUserById,
+} from "../services/user.service";
 import logger from "../utils/logger";
 
 export async function createUserHandler(
@@ -18,5 +22,10 @@ export async function createUserHandler(
 
 export async function findAllUserHandler(_req: Request, res: Response) {
   const user = await findAllUsers();
+  return res.send(user);
+}
+
+export async function findUserByIdHandler(req: Request, res: Response) {
+  const user = await findUserById({ _id: req.params.id });
   return res.send(user);
 }
