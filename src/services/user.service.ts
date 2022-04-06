@@ -7,7 +7,9 @@ import {
 import { omit } from "lodash";
 import User, { UserType } from "../models/user.model";
 
-export async function createUser(input: DocumentDefinition<UserType>) {
+export async function createUser(
+  input: DocumentDefinition<Omit<UserType, "comparePassword">>
+) {
   try {
     const user = await User.create(input);
 
@@ -40,4 +42,23 @@ export async function findAndUpdateUser(
   options: QueryOptions
 ) {
   return User.findOneAndUpdate(query, update, options);
+}
+
+export async function validatePassword({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return false;
+  }
+
+  const isValid = await user.comparePassword(password);
+  if (!isValid) return false;
+
+  return omit(user.toJSON(), "password");
 }
