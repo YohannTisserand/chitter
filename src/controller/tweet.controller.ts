@@ -40,7 +40,7 @@ export async function updateTweetHandler(
     return res.sendStatus(404);
   }
 
-  if (tweet.user !== userId) {
+  if (String(tweet.user) !== userId) {
     return res.sendStatus(403);
   }
 
