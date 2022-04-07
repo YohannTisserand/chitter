@@ -1,6 +1,7 @@
 import express from "express";
 import userRouter from "./routes/user.route";
 import sessionRouter from "./routes/session.route";
+import tweetRouter from "./routes/tweet.route";
 import deserializeUser from "./middleware/deserializeUser";
 const app = express();
 
@@ -13,5 +14,6 @@ app.get("/", (_req, res) => {
 
 app.use("/api/users", userRouter);
 app.use("/api/sessions", sessionRouter);
+app.use("/api/tweets", tweetRouter);
 
 export default app;
