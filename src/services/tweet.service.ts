@@ -10,6 +10,11 @@ export async function createTweet(input: DocumentDefinition<TweetType>) {
   return Tweet.create(input);
 }
 
+export async function findAllTweets() {
+  const tweets = await Tweet.find();
+  return tweets;
+}
+
 export async function findTweet(
   query: FilterQuery<TweetType>,
   options: QueryOptions = { lean: true }

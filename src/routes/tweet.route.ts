@@ -2,6 +2,7 @@ import express from "express";
 import {
   createTweetHandler,
   deleteTweetHandler,
+  findAllTweetsHandler,
   getTweetHandler,
   updateTweetHandler,
 } from "../controller/tweet.controller";
@@ -16,6 +17,7 @@ import {
 
 const router = express.Router();
 
+router.get("/", findAllTweetsHandler);
 router.get("/:tweetId", validate(getTweetSchema), getTweetHandler);
 router.post("/", [requireUser, validate(createTweetScema), createTweetHandler]);
 router.put("/:tweetId", [

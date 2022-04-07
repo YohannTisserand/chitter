@@ -7,6 +7,7 @@ import {
 import {
   createTweet,
   deleteTweet,
+  findAllTweets,
   findAndUpdateTweet,
   findTweet,
 } from "../services/tweet.service";
@@ -48,6 +49,11 @@ export async function updateTweetHandler(
   });
 
   return res.send(updatedTweet);
+}
+
+export async function findAllTweetsHandler(_req: Request, res: Response) {
+  const tweets = await findAllTweets();
+  return res.send(tweets);
 }
 
 export async function getTweetHandler(
