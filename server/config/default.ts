@@ -22,4 +22,5 @@ p0ZcP7r9+Nx2cCwXcceSmDBpRHGJ3te/wXLy3osEuHE=
 -----END RSA PRIVATE KEY-----`,
   accessTokenTtl: "15m",
   refreshTokenTtl: "1y",
+  origin: "http://localhost:3000",
 };

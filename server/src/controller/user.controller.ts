@@ -27,6 +27,10 @@ export async function createUserHandler(
   }
 }
 
+export async function getCurrentUser(_req: Request, res: Response) {
+  return res.send(res.locals.user);
+}
+
 export async function findAllUserHandler(_req: Request, res: Response) {
   const user = await findAllUsers();
   return res.send(user);
