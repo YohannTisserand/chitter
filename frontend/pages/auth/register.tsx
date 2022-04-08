@@ -30,7 +30,7 @@ type CreateUserInput = TypeOf<typeof createUserSchema>;
 
 function Register() {
   const router = useRouter();
-  const { registerError, setRegisterError } = useState(null);
+  const [registerError, setRegisterError] = useState(null);
   const {
     register,
     formState: { errors },
